@@ -1,0 +1,19 @@
+{% load static %}
+{% load static i18n %}
+
+
+<section class="services-section spad">
+    <div class="container">
+        <div class="row">
+            {% for advantage in advantages %}
+            <div class="col-sm-{{advantage_col}}">
+                <div class="service-box">
+                    <h4><i class="fa {{advantage.class_name}}"></i>{{advantage.title}}</h4>
+                    <p>{{advantage.content| truncatewords:12}}</p>
+                    <a href="" class="s-readmore">{% translate "Readmore " %}<i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

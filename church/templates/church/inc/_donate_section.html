@@ -1,0 +1,24 @@
+{% load static %}
+{% load static i18n %}
+
+<section class="donate-section spad set-bg" data-setbg="{{ donate.photo.file.url }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-7 donate-content">
+                <h2>{{donate.title}}</h2>
+                <ul class="donate-info">
+                    <li>Sermon From: <span>{{donate.author}}</span></li>
+                    <li>Categories: <span>{{donate.category}}</span></li>
+                    <li><span>{{ donate.enddate_donate|date:"j M Y" }}</span></li>
+                </ul>
+                <p>{{donate.content| truncatewords:40}}</p>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="donate-card">
+                    <h2>{{donate.donate_sum}}р<span>{% translate "Remaining to helps" %}</span></h2>
+                    <a href="#" class="site-btn sb-full">{% translate "DONATE NOW" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+{% load static %}
+{% load static i18n %}
+<section class="page-info-section set-bg" data-setbg="{% if site_settings.hero_section_image %}{{site_settings.hero_section_image.url}}{% else %}{% static 'assets/img/bg1.jpg' %}{% endif %}">
+    <div class="page-info-content">
+        <div class="pi-inner">
+            <div class="container">
+                <h2>{{title}}</h2>
+                <div class="site-breadcrumb">
+                    <a href="{% url 'church:home' %}">Home</a> <i class="fa fa-angle-right"></i>
+                    <span>{{title}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

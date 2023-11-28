@@ -1,0 +1,17 @@
+{% load static %}
+{% load static i18n %}
+
+<section class="about-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 about-content">
+                {% if site_settings.about_section_title %}<h2>{{site_settings.about_section_title}}</h2>{% endif%}
+                {% if site_settings.about_section_content %}<p>{{site_settings.about_section_content}}</p>{% endif%}
+                <a href="{% url 'church:home' %}" class="site-btn sb-wide">{% translate "join with us" %}</a>
+            </div>
+            <div class="col-md-6 about-img">
+                <img src="{% if site_settings.about_section_image %}{{site_settings.about_section_image.url}}{% else %}{% static 'assets/img/about.jpg' %}{% endif %}" alt>
+            </div>
+        </div>
+    </div>
+</section>

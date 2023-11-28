@@ -1,0 +1,25 @@
+{% load static %}
+
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 copyright">
+
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                    href="https://colorlib.com" target="_blank">Colorlib</a>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="social">
+                    {% if site_settings.social_net_link.all.count > 0 %}
+                        {% for socialnetwork in site_settings.social_net_link.all %}
+                            <a href="{{socialnetwork.url}}"><i class="fa-brands {{socialnetwork.social_net}} fa-xl"></i></a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

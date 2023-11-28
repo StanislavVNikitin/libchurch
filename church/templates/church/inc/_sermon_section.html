@@ -1,0 +1,33 @@
+{% load static %}
+{% load static i18n %}
+
+<section class="sermon-section spad">
+    <div class="section-title">
+        <span>{% translate "Experience God's Presence" %}</span>
+        <h2>{% translate "Sermon Today" %}</h2>
+    </div>
+    <div class="sermon-warp">
+        <div class="sermon-left-bg set-bg" data-setbg="{% if sermon_today.photo %}{{sermon_today.photo.file.url}}{% else %}{% static 'assets/img/sermon-bg.jpg' %}{% endif %}"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-6">
+                    <div class="sermon-content">
+                        <h2>{{sermon_today.title}}</h2>
+                        <ul class="sermon-info">
+                            <li>{% translate "Sermon From: " %}<span>{{ sermon_today.pastor }}</span></li>
+                            <li>{% translate "Categories: " %}<span>{{ sermon_today.category }}</span></li>
+                            <li><span>{{ sermon_today.data_sermon|date:"j M Y" }}</span></li>
+                        </ul>
+                        <p>{{sermon_today.content| truncatewords:60}}</p>
+                        <div class="icon-links">
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-link"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-zip"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-headphone"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-import"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

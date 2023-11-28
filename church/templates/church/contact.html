@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-info-section set-bg" data-setbg="{% static 'assets/img/bg.jpg' %}">
+    <div class="page-info-content">
+        <div class="pi-inner">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="site-breadcrumb">
+                    <a href="contact.html#">Home</a> <i class="fa fa-angle-right"></i>
+                    <span>Contact Us</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block contactblock %}
+<div class="full-map" id="map-canvas"></div>
+
+<section class="footer-top-contact-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 footer-top-content">
+                <div class="section-title title-left">
+                    <h2>Contact Us</h2>
+                </div>
+                <h3>New York, USA</h3>
+                <p>207 Park Avenue New York, NY 90210</p>
+                <p><span>Email:</span> <a href="../../cdn-cgi/l/email-protection" class="__cf_email__"
+                                          data-cfemail="87eee9e1e8c7e4e8ebe8f5ebeee5a9e4e8ea">[email&#160;protected]</a>
+                </p>
+                <h4>Phone:</h4>
+                <h5>+1 (409) 987–4567</h5>
+            </div>
+            <div class="col-md-6">
+                <div class="section-title title-left">
+                    <h2>CONTACT FORM</h2>
+                </div>
+                <form class="contact-form">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Your Name">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" placeholder="Email address">
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea placeholder="Your Messege"></textarea>
+                            <button type="submit" class="site-btn">Send message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <h4>Subscribe And Tell Us Real Story About Your Journey</h4>
+            </div>
+            <div class="col-sm-8 col-md-5 col-sm-offset-2 col-md-offset-0">
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="nl-send-btn">subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+{% load static i18n %}
+
+<section class="event-list-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title title-left">
+                    <span>{% translate "Experience God's Presence" %}</span>
+                    <h2>{% translate "Upcoming Events" %}</h2>
+                </div>
+            </div>
+            <div class="col-md-6 text-right event-more">
+                <a href="" class="site-btn">{% translate "view all events" %}</a>
+            </div>
+        </div>
+        <div class="event-list">
+
+            {% for event in events %}
+                <div class="el-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="el-thubm set-bg" data-setbg="{{event.photo.file.url}}"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="el-content">
+                            <div class="el-header">
+                                <div class="el-date">
+                                    <h2>{{event.datatime_event|date:"j"}}</h2>
+                                    {{event.datatime_event|date:"M"}}
+                                </div>
+                                <h3>{{event.title}}</h3>
+                                <div class="el-metas">
+                                    <div class="el-meta"><i class="fa fa-user"></i>{{event.author}}</div>
+                                    <div class="el-meta"><i class="fa fa-calendar"></i> {{event.datatime_event|date:"l H:i"}}</div>
+                                    <div class="el-meta"><i class="fa fa-map-marker"></i> {{event.place_event}}</div>
+                                </div>
+                            </div>
+                            <p>{{event.content| truncatewords:40}}</p>
+                            <a href="{{event.get_absolute_url}}" class="site-btn sb-line">{% translate "Read more" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>

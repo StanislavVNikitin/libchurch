@@ -1,0 +1,32 @@
+{% load static %}
+{% load static i18n %}
+
+<div class="top-nav-section hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="social">
+
+                    {% if site_settings.social_net_link.all.count > 0 %}
+                        {% for socialnetwork in site_settings.social_net_link.all %}
+                            <a href="{{socialnetwork.url}}"><i class="fa-brands {{socialnetwork.social_net}} fa-xl"></i></a>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-7 col-lg-6">
+                {% if site_settings.top_biblia_citation %}
+                <div class="counter-top">
+                    <h5>{{site_settings.top_biblia_citation}}</h5>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-3 col-md-2 col-lg-3">
+                <div class="user-input">
+                    <a href="">{% translate "My account " %}<i class="fa fa-angle-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

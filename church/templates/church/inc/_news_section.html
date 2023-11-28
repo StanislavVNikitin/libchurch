@@ -1,0 +1,26 @@
+{% load static %}
+{% load static i18n %}
+
+<section class="blog-section spad">
+    <div class="container">
+        <div class="section-title">
+            <span>{% translate "Experience God's Presence" %}</span>
+            <h2>{% translate "LATEST NEWS" %}</h2>
+        </div>
+        <div class="row">
+            {% for post in news %}
+                <div class="col-sm-6 col-md-{{news_col}}">
+                <div class="blog-item">
+                    <div class="bi-thumb set-bg" data-setbg="{{post.photo.file.url}}"></div>
+                    <div class="bi-content">
+                        <div class="date">{{ post.created_at|date:"j M Y" }}</div>
+                        <h4><a href="single-blog.html">{{ post.title }}</a></h4>
+                        <div class="bi-author">by <a href="index.html#">{{ post.author }}</a></div>
+                        <a href="#" class="bi-cata">{{ post.category }}</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

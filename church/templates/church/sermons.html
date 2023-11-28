@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static i18n %}
+
+{% block content %}
+
+{% include 'church/inc/_page_info_section.html' %}
+
+{% if site_settings.sermon_section_enable %}
+    {% if sermon_today %}
+        {% include 'church/inc/_sermon_section.html' %}
+    {% endif %}
+{% endif %}
+
+
+<section class="sermons-list-section spad">
+    <div class="container">
+        <div class="section-title">
+            <span>{% translate "Experience God's Presence" %}</span>
+            <h2>{% translate "Popular Sermons" %}</h2>
+        </div>
+        <div class="row">
+            {% for sermon in sermons %}
+                <div class="col-sm-6 col-md-4">
+                <div class="sermon-item">
+                    <div class="si-thumb set-bg" data-setbg="{% if sermon.photo %}{{sermon.photo.file.url}}{% endif %}"></div>
+                    <div class="si-content">
+                        <h4>{{sermon.title | truncatechars:20}}</h4>
+                        <ul class="sermon-info">
+                            <li>{% translate "Sermon From: " %}<span>{{ sermon.pastor }}</span></li>
+                            <li>{% translate "Categories: " %}<span>{{ sermon.category }}</span></li>
+                            <li><span>{{ sermon.data_sermon|date:"j M Y" }}</span></li>
+                        </ul>
+                        <div class="icon-links">
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-link"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-zip"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-headphone"></i></a>
+                            <a href="{{sermon_today.file_sermon.url}}"><i class="ti-import"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if page_obj.paginator.num_pages > 1%}
+            {% include 'church/inc/_pagination.html' %}
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

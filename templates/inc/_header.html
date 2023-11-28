@@ -1,0 +1,18 @@
+{% load static %}
+{% load static i18n %}
+{% load common_tags %}
+
+<header class="header-section">
+    <div class="container">
+
+        <a href="{% url 'church:home' %}" class="site-logo"><img src="{% static 'assets/img/logo.png' %}" alt></a>
+        <a href="{% url 'church:home' %}" class="site-btn hidden-xs">{% translate "send donation" %}</a>
+
+        <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        {% show_top_menu %}
+
+    </div>
+</header>

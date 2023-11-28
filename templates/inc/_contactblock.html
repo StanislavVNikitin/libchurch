@@ -1,0 +1,47 @@
+{% load static i18n %}
+{% if site_settings.subscribe_section_enable %}
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <h4>{% translate "Subscribe And Tell Us Real Story About Your Journey" %}</h4>
+            </div>
+            <div class="col-sm-8 col-md-5 col-sm-offset-2 col-md-offset-0">
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="nl-send-btn">{% translate "subscribe" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="footer-top-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 footer-top-content">
+                <div class="section-title title-left">
+                    <h2>Contact Us</h2>
+                </div>
+                <h3>Moscow, Russia</h3>
+                <p>Red street 123</p>
+                <p><span>Email:</span> <a href="#" class="__cf_email__">[email&#160;protected]</a>
+                </p>
+                <h4>Phone:</h4>
+                <h5>+7 (999) 123–45-67</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-area" id="map-canvas"></div>
+</section>

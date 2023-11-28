@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static i18n %}
+
+{% block content %}
+
+{% include 'church/inc/_page_info_section.html' %}
+
+{% if site_settings.upcoming_event_enable %}
+    {% include 'church/inc/_event_section.html' %}
+{% endif %}
+
+{% if site_settings.about_section_enable %}
+{% include 'church/inc/_about_section.html' %}
+{% endif %}
+
+{% if site_settings.advantage_section_enable %}
+{% if advantages.count > 0 %}
+{% include 'church/inc/_advantage_section.html' %}
+{% endif %}
+{% endif %}
+
+{% if site_settings.upcoming_event_enable %}
+{% include 'church/inc/_event_section.html' %}
+{% endif %}
+
+
+<section class="pastors-section spad" pge>
+    <div class="container">
+        <div class="section-title">
+            <span>{% translate "Experience God's Presence" %}</span>
+            <h2>{% translate "Our Pastors" %}</h2>
+        </div>
+        <div class="row">
+            {% for pastor in pastors %}
+            <div class="col-sm-6 col-md-3">
+                <div class="pastor">
+                    <div class="pastor-img set-bg" data-setbg="{{pastor.photo.file.url}}"></div>
+                    <h3>{{pastor.fullname}}</h3>
+                    <p>{{pastor.title_pastor}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

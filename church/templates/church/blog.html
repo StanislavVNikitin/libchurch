@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static i18n %}
+
+{% block content %}
+
+{% include 'church/inc/_page_info_section.html' %}
+
+<section class="blog-section blog-page spad">
+    <div class="container">
+        <div class="section-title">
+            <span>{% translate "Experience God's Presence" %}</span>
+            <h2>{% translate "LATEST NEWS" %}</h2>
+        </div>
+        <div class="row">
+
+            {% for post in news %}
+                <div class="col-sm-6 col-md-4">
+                <div class="blog-item">
+                    <div class="bi-thumb set-bg" data-setbg="{{post.photo.file.url}}"></div>
+                    <div class="bi-content">
+                        <div class="date">{{ post.created_at|date:"j M Y" }}</div>
+                        <h4><a href="single-blog.html">{{ post.title| truncatechars:20 }}</a></h4>
+                        <div class="bi-author">by <a href="index.html#">{{ post.author }}</a></div>
+                        <a href="#" class="bi-cata">{{ post.category }}</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        {% if page_obj.paginator.num_pages > 1%}
+            {% include 'church/inc/_pagination.html' %}
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

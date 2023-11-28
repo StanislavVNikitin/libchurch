@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static i18n %}
+
+{% block content %}
+
+<section class="hero-section set-bg" data-setbg="{% if site_settings.hero_section_image %}{{site_settings.hero_section_image.url}}{% else %}{% static 'assets/img/bg1.jpg' %}{% endif %}">
+    <div class="hero-content">
+        <div class="hc-inner">
+            <div class="container">
+                <h2>{{site_settings.hero_section_title}}</h2>
+                <p>{{site_settings.hero_scripture_quote}}</p>
+                <a href="#" class="site-btn sb-wide sb-line">{% translate "join with us" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if site_settings.upcoming_event_enable %}
+        {% include 'church/inc/_event_section.html' %}
+{% endif %}
+
+{% if site_settings.about_section_enable %}
+    {% include 'church/inc/_about_section.html' %}
+{% endif %}
+
+{% if site_settings.advantage_section_enable %}
+    {% if advantages.count > 0 %}
+        {% include 'church/inc/_advantage_section.html' %}
+    {% endif %}
+{% endif %}
+
+{% if site_settings.sermon_section_enable %}
+    {% if sermon_today %}
+        {% include 'church/inc/_sermon_section.html' %}
+    {% endif %}
+{% endif %}
+
+{% if site_settings.event_section_enable %}
+    {% if events.count > 0 %}
+        {% include 'church/inc/_event_list_section.html' %}
+    {% endif %}
+{% endif %}
+
+{% if site_settings.donate_section_enable %}
+        {% if donate %}
+            {% include 'church/inc/_donate_section.html' %}
+        {% endif %}
+{% endif %}
+
+{% if site_settings.news_section_enable %}
+    {% if news.count > 0 %}
+        {% include 'church/inc/_news_section.html' %}
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}

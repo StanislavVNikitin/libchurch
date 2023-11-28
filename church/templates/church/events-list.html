@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static i18n %}
+
+{% block content %}
+
+{% include 'church/inc/_page_info_section.html' %}
+
+{% if site_settings.upcoming_event_enable %}
+    {% include 'church/inc/_event_section.html' %}
+{% endif %}
+
+<section class="event-list-section spad">
+    <div class="container">
+        <div class="section-title title-left">
+            <span>{% translate "Experience God's Presence" %}</span>
+            <h2>{% translate "Upcoming Events" %}</h2>
+        </div>
+        <div class="event-list">
+            {% for event in events %}
+                <div class="el-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="el-thubm set-bg" data-setbg="{% if event.photo %}{{event.photo.file.url}}{% endif %}"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="el-content">
+                            <div class="el-header">
+                                <div class="el-date">
+                                    <h2>{{event.datatime_event|date:"j"}}</h2>
+                                    {{event.datatime_event|date:"M"}}
+                                </div>
+                                <h3>{{event.title}}</h3>
+                                <div class="el-metas">
+                                    <div class="el-meta"><i class="fa fa-user"></i> {{ event.author }}</div>
+                                    <div class="el-meta"><i class="fa fa-calendar"></i> {{event.datatime_event|date:"l H:i"}}</div>
+                                    <div class="el-meta"><i class="fa fa-map-marker"></i> {{event.place_event}}
+                                    </div>
+                                </div>
+                            </div>
+                            <p>{{event.content| truncatewords:40}}</p>
+                            <a href="" class="site-btn sb-line">{% translate "Read more" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% if page_obj.paginator.num_pages > 1%}
+            {% include 'church/inc/_pagination.html' %}
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
