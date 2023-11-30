@@ -14,9 +14,9 @@
                     <div class="bi-thumb set-bg" data-setbg="{{post.photo.file.url}}"></div>
                     <div class="bi-content">
                         <div class="date">{{ post.created_at|date:"j M Y" }}</div>
-                        <h4><a href="single-blog.html">{{ post.title }}</a></h4>
+                        <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
                         <div class="bi-author">by <a href="index.html#">{{ post.author }}</a></div>
-                        <a href="#" class="bi-cata">{{ post.category }}</a>
+                        <a href="{{post.category.get_absolute_url}}" class="bi-cata">{{ post.category }}</a>
                     </div>
                 </div>
                 </div>

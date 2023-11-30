@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, ListView, DetailView
 
-from church.models import Advantage, SiteSettings, Sermon, Event, Donate, Post, Pastor
+from church.models import Advantage, SiteSettings, Sermon, Event, Donate, Post, Pastor, Category, Tag
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ class HomeView(TemplateView):
         sermon = Sermon.objects.filter(deleted=False,pin=True).order_by('pin', '-created_at')
         if sermon.count() > 0:
             context['sermon_today'] = sermon.first
-        events = Event.objects.filter(deleted=False).order_by('datatime_event')
+        events = Event.objects.filter(deleted=False).order_by('-datatime_event')
         if events.count() > 0:
             context['events'] = events[:site_settings.event_max_count]
         donate = Donate.objects.filter(deleted=False).first()
@@ -68,6 +68,14 @@ class BlogView(ListView):
         context['title'] = _('Blog')
         return context
 
+class PostView(DetailView):
+    model = Post
+    context_object_name = "post"
+    template_name = 'church/post.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class EventsListView(ListView):
     template_name = "church/events-list.html"
@@ -76,7 +84,7 @@ class EventsListView(ListView):
     allow_empty = False
 
     def get_queryset(self):
-        return Event.objects.filter(deleted=False).order_by('-created_at')
+        return Event.objects.filter(deleted=False).order_by('-datatime_event')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -85,6 +93,7 @@ class EventsListView(ListView):
 
 class EventView(DetailView):
     model = Event
+    context_object_name = "event"
     template_name = 'church/event.html'
 
     def get_context_data(self, **kwargs):
@@ -108,4 +117,35 @@ class SermonsView(ListView):
         if self.sermon_pin:
             context['sermon_today'] = self.sermon_pin
         context['title'] = _('Sermons')
+        return context
+
+class CategoryView(ListView):
+    template_name = "church/blog.html"
+    context_object_name = "news"
+    paginate_by = 6
+    allow_empty = False
+    def get_queryset(self):
+        self.category = Category.objects.get(slug=self.kwargs['slug'])
+        self.news = Post.objects.filter(deleted=False,category=self.category).order_by('-created_at')
+        return self.news
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Category ') + self.category.title
+        return context
+
+
+class TagView(ListView):
+    template_name = "church/blog.html"
+    context_object_name = "news"
+    paginate_by = 6
+    allow_empty = False
+    def get_queryset(self):
+        self.tag = Tag.objects.get(slug=self.kwargs['slug'])
+        self.news = Post.objects.filter(deleted=False,tags=self.tag).order_by('-created_at')
+        return self.news
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('#') + self.tag.title
         return context

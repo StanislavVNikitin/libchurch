@@ -6,10 +6,8 @@
 
 {% include 'church/inc/_page_info_section.html' %}
 
-{% if site_settings.sermon_section_enable %}
-    {% if sermon_today %}
-        {% include 'church/inc/_sermon_section.html' %}
-    {% endif %}
+{% if site_settings.sermon_section_enable and sermon_today and page_obj.number == 1 %}
+    {% include 'church/inc/_sermon_section.html' %}
 {% endif %}
 
 

@@ -11,16 +11,16 @@
 
             <div class="col-md-8 single-post">
                 <figure class="post-thumb">
-                    <img src="{{event.photo.file.url}}" alt>
+                    <img src="{{post.photo.file.url}}" alt>
                 </figure>
                 <div class="post-content">
-                    <div class="date">{% translate "On "%}{{ event.datatime_event|date:"l, j M Y" }}</div>
+                    <div class="date">{% translate "On "%}{{ post.created_at|date:"l, j M Y" }}</div>
                     <h2 class="post-title">{{ event.title }}</h2>
                     <div class="post-metas">
-                        <div class="post-meta">{% translate "by "%}<a href="single-blog.html#">{{ event.author}}</a></div>
-                        <div class="post-meta">{% translate "Place event: "%}<a href="single-blog.html#">{{ event.place_event}}</a></div>
+                        <div class="post-meta">{% translate "by "%}<a href="single-blog.html#">{{ post.author}}</a></div>
+                        <div class="post-meta">{% translate "Categories "%}<a href="{{post.category.get_absolute_url}}">{{post.category.title}}</a></div>
                     </div>
-                    {{event.content}}
+                    {{post.content}}
                 </div>
 <!--                <div class="row">
                     <div class="col-sm-7">
